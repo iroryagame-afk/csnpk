@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI中小企业应用走向：从巨头叙事到生态扩散 — CSNPK</title>
+<style>
+/* ===== CSNPK Design Tokens ===== */
+:root {
+  --paper: #f6f4ee;
+  --panel: #fffefa;
+  --panel-2: #faf8f2;
+  --ink: #1f2430;
+  --ink-2: #494f5e;
+  --muted: #6f7587;
+  --hairline: #e3ded1;
+  --hairline-strong: #cfc8b6;
+  --accent: #173a5e;
+  --accent-soft: #eaf0f6;
+  --cinnabar: #b5452e;
+  --cinnabar-soft: #f9ece7;
+  --gold: #96702a;
+  --gold-deep: #856327;
+  --gold-soft: #f5eeda;
+  --jade: #2f6b4f;
+  --jade-soft: #e9f2ec;
+  --violet: #5f4b7a;
+  --radius: 10px;
+  --radius-lg: 14px;
+  --nav-h: 59px;
+  --shadow-card: 0 1px 2px rgba(31,36,48,.05), 0 8px 24px rgba(31,36,48,.06);
+  --shadow-lift: 0 2px 4px rgba(31,36,48,.06), 0 16px 40px rgba(31,36,48,.10);
+  --serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", "SimSun", serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+}
+
+/* ===== Reset & Base ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+body {
+  font-family: var(--sans);
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ===== Navigation ===== */
+.nav-bar {
+  position: sticky; top: 0; z-index: 100;
+  height: var(--nav-h);
+  background: rgba(246,244,238,.92);
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  border-bottom: 1px solid var(--hairline);
+  display: flex; align-items: center;
+}
+.nav-inner {
+  width: 100%; max-width: 1480px; margin: 0 auto;
+  padding: 0 24px;
+  display: flex; align-items: center; gap: 0;
+}
+.nav-brand {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none; flex-shrink: 0;
+}
+.nav-seal {
+  width: 30px; height: 30px; border-radius: 7px;
+  background: var(--cinnabar); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif); font-size: 16px; font-weight: 700;
+  flex-shrink: 0;
+}
+.nav-brand-text {
+  font-family: var(--serif); font-size: 17px; color: var(--ink); font-weight: 600;
+}
+.nav-brand-sub {
+  font-family: var(--mono); font-size: 9px; color: var(--muted);
+  letter-spacing: .18em; text-transform: uppercase;
+}
+.nav-links {
+  display: flex; align-items: center; gap: 0;
+  margin-left: 32px; height: 100%;
+}
+.nav-link {
+  position: relative;
+  font-size: 14px; font-weight: 600; color: var(--ink-2);
+  text-decoration: none; padding: 0 18px; height: var(--nav-h);
+  display: flex; align-items: center;
+  white-space: nowrap;
+  transition: color .15s;
+}
+.nav-link:hover { color: var(--ink); }
+.nav-link.current {
+  color: var(--cinnabar);
+}
+.nav-link.current::after {
+  content: ""; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: calc(100% - 36px); height: 2px; background: var(--cinnabar);
+}
+
+/* ===== Page Container ===== */
+.page-main {
+  max-width: 1280px; margin: 0 auto; padding: 0 24px;
+}
+
+/* ===== Hero ===== */
+.hero {
+  padding: 48px 0 28px;
+  border-bottom: 1px solid var(--hairline);
+  margin-bottom: 20px;
+}
+.hero-kicker {
+  font-family: var(--mono); font-size: 10px; letter-spacing: .2em;
+  color: var(--gold); text-transform: uppercase; margin-bottom: 12px;
+}
+.hero h1 {
+  font-family: var(--serif); font-size: 38px; font-weight: 700;
+  line-height: 1.35; color: var(--ink); margin-bottom: 14px;
+  letter-spacing: -.01em;
+}
+.hero-meta {
+  display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+  font-family: var(--mono); font-size: 11px; color: var(--muted);
+}
+.hero-meta .status-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 3px 10px; border-radius: 999px;
+  font-size: 10px; font-weight: 600;
+}
+.status-verified { background: var(--jade-soft); color: var(--jade); }
+.status-partial { background: var(--gold-soft); color: var(--gold-deep); }
+
+/* ===== Verification Bar ===== */
+.verify-bar {
+  background: var(--panel); border: 1px solid var(--hairline);
+  border-radius: var(--radius); padding: 12px 18px;
+  margin-bottom: 24px;
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  font-size: 12px; color: var(--ink-2);
+}
+.verify-bar .v-item {
+  display: flex; align-items: center; gap: 6px;
+}
+.verify-bar .v-dot {
+  width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0;
+}
+.v-dot.green { background: var(--jade); }
+.v-dot.amber { background: var(--gold); }
+.v-dot.red { background: var(--cinnabar); }
+
+/* ===== Decision Summary ===== */
+.decision-card {
+  background: var(--panel); border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg); padding: 24px 28px; margin-bottom: 28px;
+  box-shadow: var(--shadow-card);
+}
+.decision-card h2 {
+  font-family: var(--serif); font-size: 20px; font-weight: 700;
+  color: var(--ink); margin-bottom: 14px;
+  display: flex; align-items: center; gap: 8px;
+}
+.decision-card h2::before {
+  content: ""; display: inline-block; width: 4px; height: 20px;
+  background: var(--cinnabar); border-radius: 2px; flex-shrink: 0;
+}
+.decision-card p { font-size: 15px; color: var(--ink-2); line-height: 1.8; margin-bottom: 10px; }
+.decision-card p:last-child { margin-bottom: 0; }
+.decision-card strong { color: var(--ink); }
+
+/* ===== Core KPI Row ===== */
+.kpi-row {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 12px; margin-bottom: 28px;
+}
+.kpi-card {
+  background: var(--panel); border: 1px solid var(--hairline);
+  border-radius: var(--radius); padding: 18px 20px;
+  box-shadow: var(--shadow-card);
+}
+.kpi-card .kpi-label {
+  font-size: 11px; font-family: var(--mono); letter-spacing: .12em;
+  color: var(--muted); text-transform: uppercase; margin-bottom: 8px;
+}
+.kpi-card .kpi-value {
+  font-family: var(--serif); font-size: 28px; font-weight: 700;
+  color: var(--ink); line-height: 1.2; margin-bottom: 6px;
+  font-variant-numeric: tabular-nums;
+}
+.kpi-card .kpi-sub {
+  font-size: 12px; color: var(--muted);
+  font-family: var(--mono);
+}
+.kpi-card .kpi-tag {
+  display: inline-block; padding: 2px 7px; border-radius: 999px;
+  font-size: 10px; font-weight: 600; margin-top: 6px;
+}
+.kpi-tag.up { background: var(--jade-soft); color: var(--jade); }
+.kpi-tag.warn { background: var(--gold-soft); color: var(--gold-deep); }
+.kpi-tag.hot { background: var(--cinnabar-soft); color: var(--cinnabar); }
+
+/* ===== Section Titles ===== */
+.section-title {
+  font-family: var(--serif); font-size: 22px; font-weight: 700;
+  color: var(--ink); margin: 36px 0 18px;
+  padding-bottom: 10px; border-bottom: 1px solid var(--hairline);
+  display: flex; align-items: center; gap: 10px;
+}
+.section-title .st-num {
+  font-family: var(--mono); font-size: 13px; color: var(--gold);
+  font-weight: 600; letter-spacing: .08em;
+}
+
+/* ===== Company Cards ===== */
+.company-cards {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 14px; margin-bottom: 24px;
+}
+.cc {
+  background: var(--panel); border: 1px solid var(--hairline);
+  border-radius: var(--radius); padding: 20px 22px;
+  transition: transform .15s, box-shadow .15s;
+}
+.cc:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lift);
+}
+.cc-rank {
+  font-family: var(--serif); font-size: 24px; font-weight: 700; margin-bottom: 4px;
+}
+.cc-rank.r1 { color: var(--gold-deep); }
+.cc-rank.r2 { color: var(--ink-2); }
+.cc-rank.r3 { color: var(--violet); }
+.cc h3 {
+  font-family: var(--serif); font-size: 17px; font-weight: 700;
+  color: var(--ink); margin-bottom: 10px;
+}
+.cc .cc-tag {
+  display: inline-block; padding: 2px 8px; border-radius: 999px;
+  font-size: 10px; font-weight: 600; margin-left: 6px; vertical-align: middle;
+}
+.cc-tag.high { background: var(--jade-soft); color: var(--jade); }
+.cc-tag.mid { background: var(--gold-soft); color: var(--gold-deep); }
+.cc-tag.low { background: var(--cinnabar-soft); color: var(--cinnabar); }
+.cc .cc-metrics {
+  display: flex; gap: 16px; flex-wrap: wrap; margin: 10px 0;
+}
+.cc .cc-m {
+  font-family: var(--mono); font-size: 12px; color: var(--ink-2);
+}
+.cc .cc-m strong {
+  display: block; font-family: var(--serif); font-size: 20px;
+  color: var(--ink); font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.cc p { font-size: 13px; color: var(--ink-2); line-height: 1.7; margin-top: 6px; }
+
+/* ===== Radar Grid ===== */
+.radar-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 14px; margin-bottom: 24px;
+}
+.radar-card {
+  background: var(--panel); border: 1px solid var(--hairline);
+  border-radius: var(--radius); padding: 20px 22px;
+}
+.radar-card h4 {
+  font-family: var(--serif); font-size: 16px; font-weight: 700;
+  color: var(--ink); margin-bottom: 12px;
+  display: flex; align-items: center; gap: 8px;
+}
+.radar-card .r-line {
+  font-size: 13px; line-height: 1.8; color: var(--ink-2);
+}
+.radar-card .r-line strong { color: var(--ink); }
+.radar-card .r-done {
+  display: inline-block; padding: 1px 6px; border-radius: 999px;
+  font-size: 10px; font-weight: 600;
+  background: var(--jade-soft); color: var(--jade);
+}
+.radar-card .r-wait {
+  display: inline-block; padding: 1px 6px; border-radius: 999px;
+  font-size: 10px; font-weight: 600;
+  background: var(--accent-soft); color: var(--accent);
+}
+
+/* ===== Data Table ===== */
+.table-scroll {
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+  margin-bottom: 24px; border-radius: var(--radius);
+  border: 1px solid var(--hairline);
+}
+.data-table {
+  width: 100%; min-width: 680px; border-collapse: collapse;
+  font-size: 13px; background: var(--panel);
+}
+.data-table thead th {
+  background: var(--accent); color: #fff;
+  padding: 10px 12px; text-align: left; font-weight: 600;
+  font-size: 11px; letter-spacing: .05em;
+  white-space: nowrap; position: sticky; top: 0;
+}
+.data-table tbody td {
+  padding: 10px 12px; border-bottom: 1px solid var(--hairline);
+  vertical-align: top; line-height: 1.6;
+  font-family: var(--mono); font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+.data-table tbody td:first-child { font-weight: 600; }
+.data-table .cell-text { font-family: var(--sans); font-size: 13px; }
+.data-table tbody tr:hover td { background: var(--panel-2); }
+.data-table .tag-cell {
+  display: inline-block; padding: 2px 7px; border-radius: 999px;
+  font-size: 10px; font-weight: 700; text-align: center; min-width: 24px;
+}
+.tag-s { background: var(--cinnabar-soft); color: var(--cinnabar); }
+.tag-a { background: var(--gold-soft); color: var(--gold-deep); }
+.tag-b { background: var(--accent-soft); color: var(--accent); }
+.tag-h { background: var(--jade-soft); color: var(--jade); }
+.tag-m { background: var(--gold-soft); color: var(--gold-deep); }
+.tag-l { background: var(--accent-soft); color: var(--ink-2); }
+
+/* ===== A-Share Map Table ===== */
+.map-tag-h { background: var(--jade-soft); color: var(--jade); }
+.map-tag-m { background: var(--gold-soft); color: var(--gold-deep); }
+.map-tag-l { background: var(--accent-soft); color: var(--ink-2); }
+
+/* ===== Images ===== */
+.illustration {
+  text-align: center; margin: 28px 0;
+}
+.illustration img {
+  width: 100%; max-width: 900px; border-radius: var(--radius);
+  box-shadow: var(--shadow-card); border: 1px solid var(--hairline);
+}
+.illustration .fig-caption {
+  display: block; font-family: var(--mono); font-size: 11px;
+  color: var(--muted); margin-top: 8px;
+}
+
+/* ===== Conclusion Box ===== */
+.conclusion-box {
+  background: var(--panel); border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg); padding: 24px 28px; margin: 24px 0;
+  box-shadow: var(--shadow-card);
+}
+.conclusion-box h3 {
+  font-family: var(--serif); font-size: 17px; font-weight: 700;
+  color: var(--accent); margin-bottom: 12px;
+}
+.conclusion-box p { font-size: 14px; color: var(--ink-2); line-height: 1.8; margin-bottom: 8px; }
+.conclusion-box p:last-child { margin-bottom: 0; }
+.conclusion-box strong { color: var(--ink); }
+
+/* ===== Warning List ===== */
+.warn-list { margin-bottom: 24px; }
+.warn-item {
+  position: relative; padding: 6px 0 6px 20px; font-size: 14px; color: var(--ink-2); line-height: 1.7;
+}
+.warn-item::before {
+  content: "!"; position: absolute; left: 0; top: 6px;
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--cinnabar-soft); color: var(--cinnabar);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9px; font-weight: 700;
+}
+
+/* ===== Alert Block ===== */
+.alert-block {
+  background: var(--accent-soft); border-left: 4px solid var(--accent);
+  padding: 14px 18px; margin: 20px 0; border-radius: 0 var(--radius) var(--radius) 0;
+  font-size: 14px; line-height: 1.7; color: var(--ink-2);
+}
+.alert-block strong { color: var(--ink); }
+
+/* ===== Footer ===== */
+.site-footer {
+  border-top: 1px solid var(--hairline-strong);
+  margin-top: 48px; padding: 28px 0 40px;
+  font-size: 12px; color: var(--muted); line-height: 1.8;
+}
+.site-footer .footer-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
+}
+.site-footer h5 {
+  font-family: var(--mono); font-size: 10px; letter-spacing: .14em;
+  color: var(--ink-2); text-transform: uppercase; margin-bottom: 8px;
+}
+.footer-disclaimer {
+  grid-column: 1 / -1;
+  border-top: 1px solid var(--hairline); padding-top: 16px; margin-top: 8px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 980px) {
+  .kpi-row { grid-template-columns: repeat(2, 1fr); }
+  .company-cards, .radar-grid { grid-template-columns: 1fr; }
+  .site-footer .footer-grid { grid-template-columns: 1fr 1fr; }
+  .hero h1 { font-size: 30px; }
+  .nav-brand-sub { display: none; }
+}
+
+@media (max-width: 760px) {
+  .page-main { padding: 0 14px; }
+  .nav-inner { padding: 0 14px; }
+  .nav-links { margin-left: 16px; }
+  .nav-link { padding: 0 12px; font-size: 13px; }
+  .hero h1 { font-size: 26px; }
+  .hero { padding: 32px 0 20px; }
+  .kpi-row { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .kpi-card { padding: 14px 16px; }
+  .kpi-card .kpi-value { font-size: 22px; }
+  .decision-card, .conclusion-box { padding: 18px 20px; }
+  .cc { padding: 16px 18px; }
+  .data-table { min-width: 620px; font-size: 11px; }
+  .table-scroll { margin: 0 -14px 24px; border-radius: 0; border-left: none; border-right: none; }
+}
+
+@media (max-width: 520px) {
+  .hero h1 { font-size: 22px; }
+  .hero-meta { gap: 12px; font-size: 10px; }
+  .section-title { font-size: 18px; }
+  .nav-links {
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory; gap: 0;
+  }
+  .nav-link {
+    scroll-snap-align: start; flex-shrink: 0;
+    padding: 0 10px; font-size: 12px;
+  }
+  .verify-bar { font-size: 10px; padding: 10px 14px; gap: 10px; }
+  .kpi-row { grid-template-columns: 1fr 1fr; gap: 6px; }
+  .kpi-card { padding: 12px 14px; }
+  .kpi-card .kpi-value { font-size: 20px; }
+  .kpi-card .kpi-label { font-size: 10px; }
+  .data-table { min-width: 560px; }
+  .site-footer .footer-grid { grid-template-columns: 1fr; }
+  .nav-brand-text { display: none; }
+  .nav-bar { height: 52px; }
+  .nav-link { height: 52px; }
+  .nav-seal { width: 26px; height: 26px; font-size: 14px; }
+  .alert-block { margin: 16px -14px; border-radius: 0; }
+  .illustration img { border-radius: 6px; }
+  .cc .cc-metrics { gap: 10px; }
+  .cc .cc-m strong { font-size: 17px; }
+}
+
+@media (max-width: 390px) {
+  .hero h1 { font-size: 20px; line-height: 1.4; }
+  .nav-links { margin-left: 8px; }
+  .nav-link { padding: 0 8px; font-size: 11px; }
+  .nav-inner { padding: 0 8px; }
+  .page-main { padding: 0 10px; }
+  .kpi-row { gap: 4px; }
+  .kpi-card { padding: 10px 12px; }
+  .kpi-card .kpi-value { font-size: 18px; }
+  .kpi-card .kpi-label { font-size: 9px; }
+  .decision-card, .conclusion-box, .cc, .radar-card { padding: 14px 16px; }
+  .section-title { font-size: 17px; }
+  .hero-meta { font-size: 9px; }
+  .verify-bar { font-size: 9px; padding: 8px 10px; flex-direction: column; align-items: flex-start; gap: 4px; }
+  .data-table { min-width: 480px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== 全站导航 ===== -->
+<nav class="nav-bar" aria-label="主导航">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand" aria-label="CSNPK 首页">
+      <div class="nav-seal" aria-hidden="true">策</div>
+      <span class="nav-brand-text">CSNPK</span>
+      <span class="nav-brand-sub">Research</span>
+    </a>
+    <div class="nav-links">
+      <a href="#" class="nav-link">股票</a>
+      <a href="#" class="nav-link">A股工具</a>
+      <a href="#" class="nav-link current" aria-current="page">美股工具</a>
+      <a href="#" class="nav-link">市场观察</a>
+      <a href="#" class="nav-link">调研</a>
+    </div>
+  </div>
+</nav>
+
+<main class="page-main">
+
+<!-- ===== Hero ===== -->
+<section class="hero">
+  <div class="hero-kicker">Q2 2026 Earnings · AI Diffusion</div>
+  <h1>AI中小企业应用走向：从巨头叙事到生态扩散</h1>
+  <div class="hero-meta">
+    <span>📅 数据截至 2026-08-05 09:00 CST</span>
+    <span class="status-badge status-verified">已核验 · 财报数据</span>
+    <span class="status-badge status-partial">待证真 · A股映射</span>
+    <span>👤 Lingliang</span>
+  </div>
+</section>
+
+<!-- ===== 核验条 ===== -->
+<section class="verify-bar">
+  <div class="v-item"><span class="v-dot green"></span> 财报数据：7家公司已核验（DOCN/ZETA/APPS/ZBRA/QLYS/ALAB/ON）</div>
+  <div class="v-item"><span class="v-dot amber"></span> 财报日期：14家公司待公布，日期基于官方公告</div>
+  <div class="v-item"><span class="v-dot red"></span> A股映射：置信度中等，仅INOD→海天瑞声、ACMR→盛美上海、ALAB→澜起科技相对直接</div>
+</section>
+
+<!-- ===== 决策摘要 ===== -->
+<section class="decision-card">
+  <h2>核心判断</h2>
+  <p>2026年Q2是AI从超大规模巨头向中小盘企业扩散的<strong>关键验证窗口</strong>。DOCN的AI客户ARR同比增长212%、ZETA连续第20季beat-and-raise、APPS经营拐点——这些信号共同指向一件事：<strong>AI正在从"少数巨头的游戏"变成"产业链的真实收入"</strong>。</p>
+  <p>扩散分为三个层次：<strong>第一层</strong>，AI原生收入兑现（DOCN、ALAB）；<strong>第二层</strong>，AI赋能经营杠杆（ZETA、APP）；<strong>第三层</strong>，AI创造新场景（OUST、SERV、SOUN）。2026下半年AI投资的超额收益可能更多来自中小盘的补涨而非巨头的继续拉升。</p>
+</section>
+
+<!-- ===== 核心KPI ===== -->
+<section class="kpi-row">
+  <div class="kpi-card">
+    <div class="kpi-label">已公布龙头 AI 收入</div>
+    <div class="kpi-value">+212%</div>
+    <div class="kpi-sub">DOCN AI客户ARR增速</div>
+    <span class="kpi-tag up">已核验</span>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">最强商业化验证</div>
+    <div class="kpi-value">20<small style="font-size:14px;">季</small></div>
+    <div class="kpi-sub">ZETA连续beat-and-raise</div>
+    <span class="kpi-tag up">已核验</span>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">下周S级密集发布</div>
+    <div class="kpi-value">5<small style="font-size:14px;">家</small></div>
+    <div class="kpi-sub">CRWV/LITE/NBIS/COHR/AMAT</div>
+    <span class="kpi-tag warn">8.11-13</span>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">A股映射直接对标</div>
+    <div class="kpi-value">3<small style="font-size:14px;">组</small></div>
+    <div class="kpi-sub">高置信度映射关系</div>
+    <span class="kpi-tag hot">重点关注</span>
+  </div>
+</section>
+
+<!-- ===== 一、AI扩散三层结构 ===== -->
+<h2 class="section-title"><span class="st-num">01</span> 为什么现在关注中小盘AI</h2>
+
+<p style="font-size:15px;color:var(--ink-2);line-height:1.8;margin-bottom:14px;">
+过去两年，AI投资叙事高度集中于7-10家巨头：英伟达、微软、谷歌、Meta、博通、AMD、PLTR。但2026年Q2出现<strong style="color:var(--ink);">结构性变化</strong>：当超大规模CSP的CAPEX增速开始向两位数回落，AI的增量开始向应用层、垂直行业和中型企业<strong style="color:var(--ink);">扩散</strong>。
+</p>
+
+<section class="conclusion-box">
+  <h3>扩散的三个层次</h3>
+  <p><strong>第一层：AI原生收入兑现</strong> — DOCN（AI客户ARR+212%）、ALAB（收入+104%），AI直接构成主业增长引擎。</p>
+  <p><strong>第二层：AI赋能经营杠杆</strong> — ZETA（AI营销使EBITDA+56%）、APP（AXON广告平台效率提升），AI提升存量业务利润率。</p>
+  <p><strong>第三层：AI创造新场景</strong> — OUST（激光雷达）、SERV（无人配送）、SOUN（语音Agent），AI打开此前不存在的TAM。</p>
+</section>
+
+<figure class="illustration">
+  <img src="illustrations/01-framework-ai-diffusion-layers.webp" alt="AI扩散三层结构：原生收入 → 赋能经营 → 新场景" loading="lazy">
+  <figcaption class="fig-caption">▲ AI从巨头向中小企业扩散的三个层次：原生收入 → 赋能经营 → 新场景</figcaption>
+</figure>
+
+<!-- ===== 二、Q2财报全景 ===== -->
+<h2 class="section-title"><span class="st-num">02</span> Q2财报全景：已从概念进入兑现期</h2>
+
+<p style="font-size:15px;color:var(--ink-2);line-height:1.8;margin-bottom:18px;">
+本周已公布的中小盘AI公司财报，整体呈现<strong style="color:var(--ink);">"强者兑现、弱者在分化"</strong>的格局。以下按优先级排列：
+</p>
+
+<div class="company-cards">
+  <div class="cc">
+    <div class="cc-rank r1">龙一</div>
+    <h3>DOCN — DigitalOcean <span class="cc-tag high">AI纯度：极高</span></h3>
+    <div class="cc-metrics">
+      <div class="cc-m"><strong>2.81亿</strong>$ 收入 +29%</div>
+      <div class="cc-m"><strong>2.34亿</strong>$ AI客户ARR</div>
+      <div class="cc-m"><strong>+212%</strong>ARR增速</div>
+    </div>
+    <p>本轮AI收入兑现<strong>最硬</strong>的中小盘。本质是"轻量级AI推理云"，承接被AWS/GCP/Azure高门槛挡在门外的大量中小AI开发者。全年指引上调说明需求非脉冲式。</p>
+  </div>
+  <div class="cc">
+    <div class="cc-rank r2">龙二</div>
+    <h3>ZETA — Zeta Global <span class="cc-tag high">AI纯度：高</span></h3>
+    <div class="cc-metrics">
+      <div class="cc-m"><strong>4.43亿</strong>$ 收入 +44%</div>
+      <div class="cc-m"><strong>+56%</strong>EBITDA增速</div>
+      <div class="cc-m"><strong>连续20季</strong>beat-and-raise</div>
+    </div>
+    <p>AI应用商业化<strong>最强验证</strong>。连续20季超预期并上调指引，在中小盘中极为罕见。FCF+73%说明增长质量也很高。</p>
+  </div>
+  <div class="cc">
+    <div class="cc-rank r3">弹性最大</div>
+    <h3>APPS — Digital Turbine <span class="cc-tag mid">AI纯度：中低</span></h3>
+    <div class="cc-metrics">
+      <div class="cc-m"><strong>1.66亿</strong>$ 收入 +27%</div>
+      <div class="cc-m"><strong>+56%</strong>App Growth收入</div>
+      <div class="cc-m"><strong>+69%</strong>EBITDA增速</div>
+    </div>
+    <p>亮点是<strong>经营拐点</strong>，非AI收入爆发。债务约3.53亿美元（现金仅4320万），杠杆风险未消。但低基数+经营改善弹性确实大。</p>
+  </div>
+  <div class="cc">
+    <div class="cc-rank" style="color:var(--accent);">工业数字化</div>
+    <h3>ZBRA — Zebra Technologies <span class="cc-tag mid">工业识别</span></h3>
+    <div class="cc-metrics">
+      <div class="cc-m"><strong>15.57亿</strong>$ 收入 +20.4%</div>
+      <div class="cc-m"><strong>+76%</strong>调整后EPS</div>
+    </div>
+    <p>工业自动识别（条码/RFID/机器视觉）需求强化，属于Physical AI落地层。</p>
+  </div>
+  <div class="cc">
+    <div class="cc-rank" style="color:var(--accent);">高增速</div>
+    <h3>ALAB — Astera Labs <span class="cc-tag high">AI纯度：极高</span></h3>
+    <div class="cc-metrics">
+      <div class="cc-m"><strong>3.924亿</strong>$ 收入 +104%</div>
+      <div class="cc-m"><strong>5.5亿</strong>$ Q3指引</div>
+    </div>
+    <p>基本面极强，但市场预期也极高，股价已反映大部分利好。</p>
+  </div>
+  <div class="cc">
+    <div class="cc-rank" style="color:var(--muted);">补充信号</div>
+    <h3>QLYS · ON <span class="cc-tag low">增速温和</span></h3>
+    <div class="cc-metrics">
+      <div class="cc-m">QLYS 收入 <strong>+11%</strong></div>
+      <div class="cc-m">ON AI电源收入 <strong>翻倍</strong></div>
+    </div>
+    <p>QLYS安全支出稳定、盈利质量高；ON的AI数据中心电源成为真实的第二增长曲线。</p>
+  </div>
+</div>
+
+<figure class="illustration">
+  <img src="illustrations/02-infographic-q2-earnings-comparison.webp" alt="Q2中小盘AI财报成绩单对比" loading="lazy">
+  <figcaption class="fig-caption">▲ Q2中小盘AI财报成绩单：收入增速、AI信号与兑现状态一览</figcaption>
+</figure>
+
+<!-- ===== 弱信号 ===== -->
+<h3 style="font-family:var(--serif);font-size:17px;color:var(--ink);margin-bottom:12px;">⚠ 需要警惕的弱信号</h3>
+<div class="warn-list">
+  <div class="warn-item"><strong>ICHR</strong>：EPS小幅超预期但收入低于预期，盘后下跌——半导体设备零部件链不是无差别强势。</div>
+  <div class="warn-item"><strong>UPST</strong>：AI信贷模式高度依赖资金成本、贷款购买方和信用周期，不能与PLTR、ZETA这些企业AI并列。</div>
+  <div class="warn-item"><strong>APPS</strong>：经营拐点强劲，但杠杆风险未消（债务3.53亿 vs. 现金4320万）。</div>
+</div>
+
+<!-- ===== 三、四大赛道 ===== -->
+<h2 class="section-title"><span class="st-num">03</span> 四大赛道拆解与核心雷达</h2>
+
+<div class="radar-grid">
+  <div class="radar-card">
+    <h4>🧠 AI应用/广告</h4>
+    <div class="r-line">
+      <span class="r-done">已兑现</span> <strong>ZETA</strong>（AI营销商业化最强）、<strong>APPS</strong>（经营拐点弹性最大）<br>
+      <span class="r-wait">待观察</span> APP（AXON广告）、SOUN（语音Agent）、PUBM（AgenticOS）、PERI（AI原生广告）
+    </div>
+  </div>
+  <div class="radar-card">
+    <h4>🔒 数据与安全</h4>
+    <div class="r-line">
+      <span class="r-done">已兑现</span> <strong>DOCN</strong>（AI收入+212%，最强信号）、<strong>QLYS</strong>（盈利质量高）<br>
+      <span class="r-wait">待观察</span> INOD（训练数据→海天瑞声）、DDOG（AI可观测）、NET（AI安全）、CLBT（AI数字取证）
+    </div>
+  </div>
+  <div class="radar-card">
+    <h4>🤖 Physical AI</h4>
+    <div class="r-line">
+      <span class="r-done">已兑现</span> <strong>ZBRA</strong>（工业识别需求强化）<br>
+      <span class="r-wait">待观察</span> CGNX（机器视觉）、OUST（激光雷达→万集/禾赛/速腾）、SERV（无人配送）、KDK（自动驾驶卡车）
+    </div>
+  </div>
+  <div class="radar-card">
+    <h4>⚡ AI硬件</h4>
+    <div class="r-line">
+      <span class="r-done">已兑现</span> <strong>ALAB</strong>（互连芯片+104%）、<strong>ON</strong>（AI电源成第二曲线）<br>
+      <span class="r-wait">待观察</span> ACMR（设备→盛美上海）、CRWV（算力云）、NBIS（AI基础设施）、LITE（光通信）、COHR（光芯片）、AMAT（行业锚点）
+    </div>
+  </div>
+</div>
+
+<figure class="illustration">
+  <img src="illustrations/03-infographic-four-track-radar.webp" alt="中小盘AI四大赛道雷达" loading="lazy">
+  <figcaption class="fig-caption">▲ 中小盘AI四大赛道雷达：已兑现与待观察标的全景</figcaption>
+</figure>
+
+<!-- ===== 四、下周日程 ===== -->
+<h2 class="section-title"><span class="st-num">04</span> 下周重点日程与优先级</h2>
+
+<div class="table-scroll">
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>优先级</th>
+      <th>日期</th>
+      <th>公司</th>
+      <th>方向</th>
+      <th>最重要观察项</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><span class="tag-cell tag-s">S</span></td>
+      <td>8/11</td>
+      <td style="font-weight:700;">CRWV</td>
+      <td>AI算力云</td>
+      <td class="cell-text">收入、积压订单转化、Capex效率、客户集中</td>
+    </tr>
+    <tr>
+      <td><span class="tag-cell tag-s">S</span></td>
+      <td>8/11</td>
+      <td style="font-weight:700;">LITE</td>
+      <td>光通信</td>
+      <td class="cell-text">云客户需求、800G/1.6T、EML与激光器产能</td>
+    </tr>
+    <tr>
+      <td><span class="tag-cell tag-s">S</span></td>
+      <td>8/12</td>
+      <td style="font-weight:700;">NBIS</td>
+      <td>AI云</td>
+      <td class="cell-text">AI基础设施收入、GPU利用率、Capex和现金消耗</td>
+    </tr>
+    <tr>
+      <td><span class="tag-cell tag-s">S</span></td>
+      <td>8/12</td>
+      <td style="font-weight:700;">COHR</td>
+      <td>光芯片</td>
+      <td class="cell-text">数据中心收入、800G/1.6T、毛利率及FY27指引</td>
+    </tr>
+    <tr>
+      <td><span class="tag-cell tag-s">S</span></td>
+      <td>8/13</td>
+      <td style="font-weight:700;">AMAT</td>
+      <td>半导体设备</td>
+      <td class="cell-text">先进逻辑、HBM、先进封装、中国收入及指引</td>
+    </tr>
+    <tr>
+      <td><span class="tag-cell tag-a">A</span></td>
+      <td>8/5</td>
+      <td style="font-weight:700;">APP</td>
+      <td>AI广告</td>
+      <td class="cell-text">AXON广告效率、非游戏广告扩张、EBITDA率</td>
+    </tr>
+    <tr>
+      <td><span class="tag-cell tag-a">A</span></td>
+      <td>8/5</td>
+      <td style="font-weight:700;">SOUN</td>
+      <td>语音Agent</td>
+      <td class="cell-text">收入增速、汽车/餐饮客户、订阅与订单积压</td>
+    </tr>
+    <tr>
+      <td><span class="tag-cell tag-a">A</span></td>
+      <td>8/6</td>
+      <td style="font-weight:700;">INOD</td>
+      <td>AI训练数据</td>
+      <td class="cell-text">收入增速、大客户集中、Palantir合作贡献、利润率</td>
+    </tr>
+    <tr>
+      <td><span class="tag-cell tag-a">A</span></td>
+      <td>8/10</td>
+      <td style="font-weight:700;">PERI</td>
+      <td>AI广告</td>
+      <td class="cell-text">AI原生广告平台增长恢复、现金流及指引</td>
+    </tr>
+    <tr>
+      <td><span class="tag-cell tag-a">A</span></td>
+      <td>8/13</td>
+      <td style="font-weight:700;">CLBT</td>
+      <td>AI数字取证</td>
+      <td class="cell-text">ARR、云化、Genesis Agent商业化、政府订单</td>
+    </tr>
+    <tr>
+      <td><span class="tag-cell tag-b">B</span></td>
+      <td>8/5-6</td>
+      <td style="font-weight:700;">CGNX · OUST · PUBM · SERV · KDK</td>
+      <td>多方向</td>
+      <td class="cell-text">机器视觉需求、激光雷达核心收入、AgenticOS、机器人数量</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="alert-block">
+  <strong>下周"S级"密集：8月11-13日是重头戏。</strong>CRWV、LITE、NBIS、COHR、AMAT五家S级公司集中发布，覆盖AI算力云、光通信、光芯片、半导体设备——这几乎是中小盘AI硬件的"超级周"。这些公司的业绩将决定AI硬件投资叙事能否从英伟达一家独大扩散到整个供应链。
+</div>
+
+<!-- ===== 五、A股映射 ===== -->
+<h2 class="section-title"><span class="st-num">05</span> A股映射：哪些方向最直接</h2>
+
+<div class="table-scroll">
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>美股标的</th>
+      <th>A股映射</th>
+      <th>置信度</th>
+      <th>逻辑</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="font-weight:700;">INOD</td>
+      <td style="font-weight:700;">海天瑞声</td>
+      <td><span class="tag-cell tag-h">高</span></td>
+      <td class="cell-text">AI训练数据服务，业务模式几乎同构</td>
+    </tr>
+    <tr>
+      <td style="font-weight:700;">ACMR</td>
+      <td style="font-weight:700;">盛美上海</td>
+      <td><span class="tag-cell tag-h">高</span></td>
+      <td class="cell-text">ACMR是盛美上海母公司，直接关联</td>
+    </tr>
+    <tr>
+      <td style="font-weight:700;">ALAB</td>
+      <td style="font-weight:700;">澜起科技</td>
+      <td><span class="tag-cell tag-h">高</span></td>
+      <td class="cell-text">AI互连芯片（Retimer/PCIe），同一赛道</td>
+    </tr>
+    <tr>
+      <td style="font-weight:700;">ZBRA</td>
+      <td>优博讯、新北洋、远望谷</td>
+      <td><span class="tag-cell tag-m">中</span></td>
+      <td class="cell-text">工业条码/RFID/识别，但技术代差明显</td>
+    </tr>
+    <tr>
+      <td style="font-weight:700;">ZETA · APP · APPS</td>
+      <td>易点天下、蓝色光标</td>
+      <td><span class="tag-cell tag-m">中</span></td>
+      <td class="cell-text">AI广告，但中国广告生态与北美差异大</td>
+    </tr>
+    <tr>
+      <td style="font-weight:700;">SOUN</td>
+      <td>科大讯飞</td>
+      <td><span class="tag-cell tag-m">中</span></td>
+      <td class="cell-text">语音AI，但业务规模和模式差异大</td>
+    </tr>
+    <tr>
+      <td style="font-weight:700;">OUST</td>
+      <td>万集科技；港股禾赛、速腾</td>
+      <td><span class="tag-cell tag-m">中</span></td>
+      <td class="cell-text">激光雷达赛道映射，港股对标更精确</td>
+    </tr>
+    <tr>
+      <td style="font-weight:700;">QLYS</td>
+      <td>安恒信息、深信服、奇安信</td>
+      <td><span class="tag-cell tag-l">低-中</span></td>
+      <td class="cell-text">网络安全方向一致，但定价模式不同</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<figure class="illustration">
+  <img src="illustrations/04-comparison-ashare-mapping.webp" alt="美股中小盘AI→A股映射关系图" loading="lazy">
+  <figcaption class="fig-caption">▲ 美股中小盘AI → A股映射关系：线条粗细表示映射置信度</figcaption>
+</figure>
+
+<!-- ===== 六、投资启示 ===== -->
+<h2 class="section-title"><span class="st-num">06</span> 投资启示</h2>
+
+<section class="conclusion-box">
+  <h3>三个核心结论</h3>
+  <p><strong>1. AI的"扩散交易"正在兑现。</strong>DOCN+ZETA+APPS三只中小盘同时验证了AI可以在非巨头公司产生真实收入和利润，这不是偶然。2026下半年AI投资的超额收益可能更多来自中小盘的补涨而非巨头的继续拉升。</p>
+  <p><strong>2. 区分"AI纯度"至关重要。</strong>ALAB的104%收入增速是AI驱动的，APPS的27%收入增速也受AI优化影响，但两者AI含量天差地别。如果市场简单把"有AI标签"打包买入，AI含量低的公司可能在一轮财报后被抛弃。</p>
+  <p><strong>3. 8月11-13日是验证周。</strong>CRWV、LITE、NBIS、COHR、AMAT五家S级密集发布将决定AI硬件扩散叙事的命运。如果全部超预期，AI硬件产业链将迎来一轮系统性重估。</p>
+</section>
+
+<!-- ===== 七、风险提示 ===== -->
+<h2 class="section-title"><span class="st-num">07</span> 风险与限制</h2>
+
+<div class="warn-list">
+  <div class="warn-item">中小盘财报波动性极大，非GAAP口径、并购贡献和高客户集中度容易制造"看起来很强"的假象。</div>
+  <div class="warn-item">部分公司（APPS、CRWV、NBIS）杠杆率偏高，在利率环境不确定时风险被放大。</div>
+  <div class="warn-item">A股映射置信度整体中等，美股中小盘AI行情不一定能传导到A股对应标的。</div>
+  <div class="warn-item">市场对AI预期整体仍偏高（尤其是硬件方向），"beat但股价跌"的ICHR模式可能重现。</div>
+</div>
+
+<hr style="border:none;border-top:1px solid var(--hairline);margin:28px 0;">
+
+<p style="font-family:var(--mono);font-size:12px;color:var(--muted);line-height:1.8;">
+  <strong>附：核心跟踪雷达完整清单</strong><br>
+  AI应用/广告：ZETA、APPS、APP、SOUN、PUBM、PERI<br>
+  数据与安全：DOCN、DDOG、NET、INOD、QLYS、CLBT<br>
+  Physical AI：ZBRA、CGNX、OUST、SERV、KDK<br>
+  AI硬件：ALAB、ON、ACMR、CRWV、NBIS、LITE、COHR、AMAT<br>
+</p>
+
+</main>
+
+<!-- ===== Footer ===== -->
+<footer class="site-footer">
+  <div class="page-main">
+    <div class="footer-grid">
+      <div>
+        <h5>数据来源</h5>
+        <p>DigitalOcean、Zeta Global、Digital Turbine、Zebra Technologies、Astera Labs、ON Semiconductor、Qualys 官方财报与投资者关系页面</p>
+      </div>
+      <div>
+        <h5>核验状态</h5>
+        <p>7家公司财报数据已核验；14家公司财报日期基于官方公告；A股映射为跨市场类比分析，置信度因标的不同而异</p>
+      </div>
+      <div>
+        <h5>方法说明</h5>
+        <p>模式A · 研究报告。本文结论基于公开财报的截面比较和产业逻辑推演。"已核验"指当前任务实际完成核验；"待证真"指有线索但证据不足。</p>
+      </div>
+      <div class="footer-disclaimer">
+        <strong>⚠ 免责声明</strong> 本文基于公开财报数据、公司公告及行业研究撰写，仅供研究参考，不构成任何投资建议。文中涉及的所有公司标的、评级和判断均为作者个人观点，不代表任何机构的立场。股票市场存在风险，过往业绩不预示未来表现，投资者应独立判断并承担投资风险。研究观察，不直接产生买点。
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
