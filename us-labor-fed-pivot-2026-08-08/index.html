@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="2026年8月美国就业转弱、花旗降息路径与美联储政策反应函数深度研究：拆解失业率、劳动参与率、通胀约束及美债、美元、科技股传导。">
+<title>美国就业转弱与Fed政策拐点：从“再加息”到“重新定价降息” — CSNPK</title>
+<style>
+:root{--paper:#f6f4ee;--panel:#fffefa;--panel2:#faf8f2;--ink:#1f2430;--ink2:#494f5e;--muted:#727788;--line:#e3ded1;--navy:#173a5e;--navysoft:#eaf0f6;--red:#b5452e;--redsoft:#f9ece7;--gold:#96702a;--goldsoft:#f5eeda;--green:#2f6b4f;--greensoft:#e9f2ec;--serif:"Noto Serif SC","Source Han Serif SC","Songti SC","STSong","SimSun",serif;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.72;-webkit-font-smoothing:antialiased}a{color:var(--navy);text-underline-offset:3px}.nav{position:sticky;top:0;z-index:30;background:rgba(246,244,238,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}.nav-in{max-width:1180px;height:58px;margin:auto;padding:0 22px;display:flex;align-items:center;gap:10px}.seal{width:30px;height:30px;border-radius:7px;background:var(--red);color:#fff;display:grid;place-items:center;font:700 16px var(--serif)}.brand{font:600 17px var(--serif);color:var(--ink);text-decoration:none}.nav-meta{margin-left:auto;color:var(--muted);font:10px var(--mono);letter-spacing:.08em}.wrap{max-width:1180px;margin:auto;padding:0 22px 64px}.hero{padding:48px 0 30px;border-bottom:1px solid var(--line)}.kicker{font:10px var(--mono);letter-spacing:.19em;color:var(--gold);text-transform:uppercase;margin-bottom:12px}.hero h1{font:700 clamp(30px,4.5vw,48px)/1.22 var(--serif);letter-spacing:-.025em;max-width:1000px;margin:0}.lead{margin:16px 0 0;max-width:930px;color:var(--ink2);font-size:15px}.meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px;font:11px var(--mono);color:var(--muted)}.badge{display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:99px;background:var(--greensoft);color:var(--green);font:600 10px var(--sans)}.badge:before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.verdict{margin:24px 0;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:24px 26px;box-shadow:0 8px 28px rgba(31,36,48,.055)}.verdict h2,.section h2{font:700 22px var(--serif);margin:0}.verdict h2{display:flex;align-items:center;gap:9px;margin-bottom:10px}.verdict h2:before{content:"";width:4px;height:22px;border-radius:2px;background:var(--red)}.verdict p{margin:0;color:var(--ink2);font-size:14px}.verdict strong{color:var(--ink)}
+.pulse{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin:18px 0 30px}.tile{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:17px}.tile .l{font:10px var(--mono);letter-spacing:.1em;color:var(--muted);text-transform:uppercase}.tile .v{font:700 26px var(--serif);margin:5px 0 2px}.tile .s{font-size:11px;color:var(--muted)}.red{color:var(--red)}.green{color:var(--green)}.blue{color:var(--navy)}
+.section{margin-top:38px}.section h2{display:flex;gap:9px;align-items:baseline;padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:16px}.num{color:var(--gold);font:600 12px var(--mono)}.section>p{color:var(--ink2);font-size:14px;max-width:980px}.callout{background:var(--goldsoft);border:1px solid #e6d8b5;border-radius:11px;padding:16px 18px;color:#5f512f;font-size:13px;margin:14px 0}.callout strong{color:#3f351f}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.card{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:18px 20px}.card h3{font:700 16px var(--serif);margin:0 0 8px}.card p{margin:0;color:var(--ink2);font-size:13px}.card ul{margin:8px 0 0;padding-left:18px;color:var(--ink2);font-size:13px}.chip{display:inline-block;padding:2px 7px;border-radius:99px;font-size:10px;font-weight:700}.c-red{background:var(--redsoft);color:var(--red)}.c-green{background:var(--greensoft);color:var(--green)}.c-blue{background:var(--navysoft);color:var(--navy)}.c-gold{background:var(--goldsoft);color:#80611f}
+.table-wrap{overflow:hidden;border:1px solid var(--line);border-radius:11px;background:var(--panel)}table{width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed}th{background:var(--navy);color:#fff;text-align:left;padding:10px 12px;font-size:11px;letter-spacing:.03em}td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top;overflow-wrap:anywhere;word-break:break-word}tbody tr:last-child td{border-bottom:0}.muted{color:var(--muted)}
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.flow div{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:15px 14px;font-size:12px;color:var(--ink2)}.flow b{display:block;color:var(--ink);font:700 14px var(--serif);margin-bottom:4px}.flow div:not(:last-child):after{content:"→";position:absolute;right:-9px;top:50%;transform:translateY(-50%);z-index:2;color:var(--gold);font-weight:700}
+.matrix{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.scenario{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:18px}.scenario h3{font:700 17px var(--serif);margin:0 0 8px}.scenario .tag{font:700 10px var(--mono);margin-bottom:9px;display:inline-block}.scenario p{font-size:12.5px;color:var(--ink2);margin:0 0 8px}.scenario b{color:var(--ink)}
+.timeline{display:grid;gap:8px}.event{display:grid;grid-template-columns:110px 1fr;gap:14px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:13px 15px}.event time{font:700 12px var(--mono);color:var(--navy)}.event p{margin:0;font-size:13px;color:var(--ink2)}
+.sources{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.source{display:block;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:11px 13px;text-decoration:none}.source b{display:block;font-size:12px;color:var(--ink)}.source span{font-size:10.5px;color:var(--muted)}.note{margin-top:28px;border-top:1px solid var(--line);padding-top:14px;font-size:10.5px;color:var(--muted)}
+@media(max-width:900px){.pulse{grid-template-columns:repeat(2,1fr)}.matrix{grid-template-columns:1fr}.flow{grid-template-columns:1fr}.flow div:not(:last-child):after{content:"↓";right:auto;left:50%;top:auto;bottom:-14px;transform:translateX(-50%)}.nav-meta{display:none}}
+@media(max-width:650px){.wrap{padding:0 14px 40px}.nav-in{padding:0 14px}.hero{padding-top:30px}.grid2,.sources{grid-template-columns:1fr}.event{grid-template-columns:1fr;gap:4px}.verdict{padding:19px}.lead{font-size:14px}.table-wrap{border:0;background:transparent}table,thead,tbody,tr,th,td{display:block}thead{display:none}table{table-layout:auto}tbody{display:grid;gap:9px}tr{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px}td{border:0;padding:4px 0;font-size:12.5px}td:before{content:attr(data-label);display:block;color:var(--muted);font:700 9px var(--mono);letter-spacing:.06em;text-transform:uppercase;margin-bottom:1px}.pulse{gap:8px}.tile{padding:13px}.tile .v{font-size:22px}}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="nav-in"><span class="seal">莫</span><a class="brand" href="../">CSNPK</a><span class="nav-meta">US LABOR × FED POLICY · 2026.08.08</span></div></nav>
+<main class="wrap">
+<header class="hero">
+<div class="kicker">Macro Policy & Public Equity Research</div>
+<h1>美国就业转弱与 Fed 政策拐点：从“再加息”到“重新定价降息”</h1>
+<p class="lead">2026 年 7 月就业报告首次把美国宏观争论从“通胀是否迫使 Fed 再加息”，推向“就业是否会先于通胀恶化”。失业率降至 4.1% 并不等于劳动力市场改善；劳动参与率降至 61.4%、26.4 万人退出劳动力市场，才是理解本轮政策重估的核心。</p>
+<div class="meta"><span>研究时点：2026-08-08</span><span>数据截止：美东 2026-08-07 收盘</span><span class="badge">官方数据优先 · 市场定价交叉验证</span></div>
+</header>
+<section class="verdict"><h2>执行摘要</h2><p><strong>7 月就业报告构成政策路径的重要拐点，但尚不足以确认新一轮降息周期。</strong> 非农就业减少 2.3 万，较市场预期增加 8 万形成超过 10 万人的负向意外；5、6 月合计再下修 10.3 万。与此同时，失业率从 4.2% 降至 4.1%，主要伴随劳动参与率从 61.5% 降至 61.4%，约 26.4 万人退出劳动力市场。市场因此首先撤回“9 月再加息”的部分定价，而不是直接确认“连续降息”。花旗的核心押注，是未来参与率回升而新增就业持续低迷时，失业率将出现延迟性上行，迫使 Fed 在通胀仍偏高的环境下转向。对资产定价而言，最优组合不是单纯“就业差”，而是<strong>就业温和降温 + 核心通胀继续回落</strong>；一旦演化为就业快速恶化而通胀粘性仍高，则会从软着陆降息交易转向滞胀或盈利下修交易。</p></section>
+<section class="pulse">
+<article class="tile"><div class="l">July Payrolls</div><div class="v red">-23K</div><div class="s">预期 +80K · 五个月首次负增长</div></article>
+<article class="tile"><div class="l">Unemployment</div><div class="v blue">4.1%</div><div class="s">从 4.2% 回落，但质量偏弱</div></article>
+<article class="tile"><div class="l">Participation</div><div class="v red">61.4%</div><div class="s">约五年半低位 · 26.4万人退出</div></article>
+<article class="tile"><div class="l">Fed Funds</div><div class="v blue">3.50–3.75%</div><div class="s">7月 FOMC 维持不变 · 9:3 投票</div></article>
+</section>
+<section class="section"><h2><span class="num">01</span>事实层：就业报告到底弱在哪里</h2>
+<div class="table-wrap"><table><thead><tr><th>指标</th><th>7月/最新</th><th>基准或前值</th><th>投资含义</th></tr></thead><tbody>
+<tr><td data-label="指标"><b>非农就业</b></td><td data-label="7月/最新">-2.3 万</td><td data-label="基准或前值">市场预期 +8 万</td><td data-label="投资含义">明显负向意外；就业创造接近停滞</td></tr>
+<tr><td data-label="指标"><b>5、6月修正</b></td><td data-label="7月/最新">合计 -10.3 万</td><td data-label="基准或前值">6月下修至 +2万</td><td data-label="投资含义">弱势不是单月噪音，历史就业强度被高估</td></tr>
+<tr><td data-label="指标"><b>失业率</b></td><td data-label="7月/最新">4.1%</td><td data-label="基准或前值">6月 4.2%</td><td data-label="投资含义">表面改善，但需结合参与率解释</td></tr>
+<tr><td data-label="指标"><b>劳动参与率</b></td><td data-label="7月/最新">61.4%</td><td data-label="基准或前值">6月 61.5%</td><td data-label="投资含义">劳动力供给继续收缩，压低统计失业率</td></tr>
+<tr><td data-label="指标"><b>私营就业</b></td><td data-label="7月/最新">+3 万</td><td data-label="基准或前值">6月同样偏低</td><td data-label="投资含义">企业招聘需求明显偏弱</td></tr>
+<tr><td data-label="指标"><b>工资同比</b></td><td data-label="7月/最新">约 +3.2%</td><td data-label="基准或前值">此前更高</td><td data-label="投资含义">工资压力边际降温，有利于服务通胀回落</td></tr>
+</tbody></table></div>
+<div class="callout"><strong>关键辨析：</strong>失业率 = 失业人口 ÷ 劳动力人口。退出劳动力市场的人不再计入“失业人口”，因此在就业没有改善时，失业率也可能下降。7 月的 4.1% 更接近“参与率下降型改善”，而不是“就业扩张型改善”。</div>
+</section>
+<section class="section"><h2><span class="num">02</span>就业结构：美国更像“招聘衰退”，而非“裁员衰退”</h2>
+<div class="grid2"><article class="card"><h3>Slow Hire：企业减少新增岗位</h3><p>6 月 JOLTS 显示职位空缺继续回落，7 月非农又转负。企业的第一选择更接近冻结编制、延后招聘，而非立即大规模裁员。这会首先打击毕业生、跳槽者和重新进入劳动力市场的人。</p></article><article class="card"><h3>Slow Fire：裁员尚未失控</h3><p>现阶段尚未出现 2008 式的广泛裁员螺旋。劳动力市场的核心矛盾是“岗位生成不足”，而不是“存量岗位快速消失”。因此经济仍可能维持增长，但就业弹性明显降低。</p></article></div>
+<p>这种结构对政策判断非常重要。只要企业没有大规模裁员，Fed 就仍有时间观察通胀；但如果劳动参与率回升、求职者重新进入市场，而岗位增长仍停留在每月 0–5 万附近，失业率可能在没有裁员潮的情况下快速上行。</p>
+</section>
+<section class="section"><h2><span class="num">03</span>花旗真正押注的不是“现在失业率很高”，而是失业率的延迟跳升</h2>
+<div class="flow"><div><b>参与率当前偏低</b>大量潜在劳动者暂时不在劳动力市场</div><div><b>未来重新求职</b>参与率恢复会扩大劳动力分母与求职人数</div><div><b>岗位增长仍弱</b>企业招聘不足以吸收新增求职者</div><div><b>失业人口增加</b>U3 失业率开始显著上行</div><div><b>Fed反应函数转向</b>就业风险权重超过通胀风险</div></div>
+<p>花旗此前已将政策路径调整为 <b>2026 年 10 月降息 25bp、12 月再降 25bp、2027 年 1 月再降 25bp</b>。因此“降息三次”更准确的表述是<strong>跨年三次、累计 75bp</strong>，其中 2026 年内两次。这个路径与当前部分仍偏鹰的机构形成鲜明分歧。</p>
+<div class="callout"><strong>花旗框架的优势：</strong>它没有被 4.1% 的表面低失业率迷惑，而是关注“参与率恢复后失业率是否会突然抬升”。<br><strong>核心风险：</strong>如果核心通胀维持高位，Fed 可能选择更长时间按兵不动，即使就业已经明显降温。</div>
+</section>
+<section class="section"><h2><span class="num">04</span>Fed 当前反应函数：就业风险上升，但通胀仍是硬约束</h2>
+<div class="grid2"><article class="card"><h3>7 月 FOMC 仍然非常鹰</h3><p>7 月 29 日 FOMC 以 9:3 票维持联邦基金目标区间在 3.50%–3.75%。三名反对者希望加息 25bp。这说明就业报告公布前，委员会内部的真实争论仍是“是否进一步收紧”，而非“何时降息”。</p></article><article class="card"><h3>通胀尚未回到舒适区</h3><p>6 月 CPI 同比仍为 3.5%，核心 CPI 同比 2.6%；Fed 更关注的 PCE 通胀仍明显高于 2% 目标。就业弱化可以阻止加息，但要让 Fed 连续降息，仍需要核心通胀进一步降温。</p></article></div>
+<p>因此，7 月就业报告对政策的第一层影响是：<strong>降低“9 月加息”的概率，提升“暂停”的权重。</strong>只有当后续 CPI、PCE 与工资数据确认通胀压力继续减弱，第二层重估——从“暂停”切换为“降息”——才会真正完成。</p>
+</section>
+<section class="section"><h2><span class="num">05</span>市场已经如何定价：先撤回加息，再谈降息</h2>
+<div class="table-wrap"><table><thead><tr><th>市场变量</th><th>就业报告后的变化</th><th>含义</th></tr></thead><tbody>
+<tr><td data-label="市场变量"><b>9月加息概率</b></td><td data-label="变化">从约 55%–57% 降至约 40%–44%</td><td data-label="含义">市场首先撤回“再加息”交易</td></tr>
+<tr><td data-label="市场变量"><b>2Y 美债收益率</b></td><td data-label="变化">降至约 4.245%</td><td data-label="含义">短端对政策路径最敏感，直接反映终端利率预期下降</td></tr>
+<tr><td data-label="市场变量"><b>10Y 美债收益率</b></td><td data-label="变化">降至约 4.649%</td><td data-label="含义">折现率下行支撑成长股估值</td></tr>
+<tr><td data-label="市场变量"><b>美元指数</b></td><td data-label="变化">约跌至 99.50</td><td data-label="含义">利差预期收窄，美元承压</td></tr>
+<tr><td data-label="市场变量"><b>Nasdaq</b></td><td data-label="变化">当日约 +1.3%</td><td data-label="含义">科技股主要交易“加息风险下降”，尚非衰退定价</td></tr>
+</tbody></table></div>
+</section>
+<section class="section"><h2><span class="num">06</span>三种宏观情景：决定美股方向的不是“降不降息”，而是“为什么降息”</h2>
+<div class="matrix">
+<article class="scenario"><span class="tag chip c-green">BASE / 最优风险资产环境</span><h3>软着陆式转鸽</h3><p><b>条件：</b>非农维持低位但不持续深度负增长；失业率缓升；核心 CPI/PCE 继续回落。</p><p><b>Fed：</b>9 月暂停，Q4 开始具备降息条件。</p><p><b>资产：</b>美债走强、美元偏弱；高久期科技、软件、半导体、小盘成长最受益。</p></article>
+<article class="scenario"><span class="tag chip c-gold">RISK / 滞胀约束</span><h3>就业弱，但通胀重新粘住</h3><p><b>条件：</b>就业继续降温，但能源、关税或服务价格使核心通胀停留高位。</p><p><b>Fed：</b>放弃加息但长期暂停，无法顺畅降息。</p><p><b>资产：</b>估值扩张受限；成长股从“利率红利”切换回盈利与估值约束。</p></article>
+<article class="scenario"><span class="tag chip c-red">TAIL / 衰退式降息</span><h3>就业快速恶化</h3><p><b>条件：</b>非农连续大幅负增长、失业率快速突破 4.5%、消费和企业利润同步下修。</p><p><b>Fed：</b>快速降息。</p><p><b>资产：</b>初期盈利下修可能压过降息利好，权益先承压；随后才进入流动性驱动阶段。</p></article>
+</div>
+</section>
+<section class="section"><h2><span class="num">07</span>公共权益传导：谁最先受益，谁需要警惕</h2>
+<div class="table-wrap"><table><thead><tr><th>资产/板块</th><th>软着陆转鸽</th><th>衰退式降息</th><th>主要机制</th></tr></thead><tbody>
+<tr><td data-label="资产/板块"><b>大型科技 / Nasdaq</b></td><td data-label="软着陆转鸽"><span class="chip c-green">强受益</span></td><td data-label="衰退式降息"><span class="chip c-gold">先压后修复</span></td><td data-label="主要机制">高久期资产，对实际利率与折现率最敏感</td></tr>
+<tr><td data-label="资产/板块"><b>半导体 / AI硬件</b></td><td data-label="软着陆转鸽"><span class="chip c-green">强受益</span></td><td data-label="衰退式降息"><span class="chip c-gold">看Capex韧性</span></td><td data-label="主要机制">估值+资本开支双重Beta，但衰退时需防终端需求下修</td></tr>
+<tr><td data-label="资产/板块"><b>软件 / SaaS</b></td><td data-label="软着陆转鸽"><span class="chip c-green">高弹性</span></td><td data-label="衰退式降息"><span class="chip c-gold">分化</span></td><td data-label="主要机制">久期高、融资环境敏感，盈利质量决定衰退期表现</td></tr>
+<tr><td data-label="资产/板块"><b>小盘股</b></td><td data-label="软着陆转鸽"><span class="chip c-green">明显受益</span></td><td data-label="衰退式降息"><span class="chip c-red">信用风险上升</span></td><td data-label="主要机制">融资成本下降利好最直接，但资产负债表更脆弱</td></tr>
+<tr><td data-label="资产/板块"><b>银行</b></td><td data-label="软着陆转鸽"><span class="chip c-gold">中性偏分化</span></td><td data-label="衰退式降息"><span class="chip c-red">承压</span></td><td data-label="主要机制">净息差、信用成本与贷款需求三者相互抵消</td></tr>
+<tr><td data-label="资产/板块"><b>黄金</b></td><td data-label="软着陆转鸽"><span class="chip c-green">受益</span></td><td data-label="衰退式降息"><span class="chip c-green">受益</span></td><td data-label="主要机制">美元和实际利率下降，同时受避险需求支撑</td></tr>
+</tbody></table></div>
+</section>
+<section class="section"><h2><span class="num">08</span>未来五周：政策路径的验证窗口</h2>
+<div class="timeline">
+<div class="event"><time>08 · 12</time><p><b>7 月 CPI</b>：当前最关键验证。若核心通胀继续降温，就业弱化将从“阻止加息”进一步升级为“打开降息窗口”。</p></div>
+<div class="event"><time>08 · 13</time><p><b>7 月 PPI</b>：观察上游价格、能源与关税冲击是否重新传导。</p></div>
+<div class="event"><time>08 · 28</time><p><b>CES 年度基准修正初值</b>：若继续向下修正，将强化“过去就业被系统性高估”的判断。</p></div>
+<div class="event"><time>09 · 01</time><p><b>7 月 JOLTS</b>：重点看职位空缺、招聘率与离职率，验证“招聘衰退”是否延续。</p></div>
+<div class="event"><time>09 · 04</time><p><b>8 月非农</b>：决定 7 月负增长是噪音还是趋势延续。</p></div>
+<div class="event"><time>09 · 15–16</time><p><b>FOMC</b>：市场核心问题不是“是否立即降息”，而是点阵图、声明与主席口径是否正式从通胀优先切向双重风险平衡。</p></div>
+</div>
+</section>
+<section class="section"><h2><span class="num">09</span>投资结论与证伪条件</h2>
+<div class="grid2"><article class="card"><h3>当前最合理的主线</h3><ul><li><b>政策阶段：</b>“再加息”定价正在退潮，“暂停”成为更强基准；“连续降息”仍需通胀数据确认。</li><li><b>权益阶段：</b>当前科技股反弹更像折现率改善，而非经济衰退后流动性宽松。</li><li><b>最优组合：</b>就业温和走弱、核心通胀下降、盈利仍保持韧性。</li><li><b>置信度：</b>就业趋势转弱——高；Q4 至少一次降息——中；花旗 Oct+Dec+Jan 三连降完整兑现——中低。</li></ul></article><article class="card"><h3>最重要的证伪信号</h3><ul><li>7 月或 8 月核心 CPI/PCE 再度显著加速。</li><li>工资增长重新走高，服务通胀无法降温。</li><li>职位空缺、招聘率重新明显改善，7 月非农被后续大幅上修。</li><li>就业快速恶化并传导至消费、信用和企业盈利，导致“降息利好”被“衰退盈利下修”取代。</li></ul></article></div>
+<div class="callout"><strong>底线判断：</strong>7 月非农是第一张牌，7 月 CPI 是第二张牌，8 月非农与 9 月 FOMC 是确认牌。若未来数据形成“就业继续弱 + 核心通胀继续降”的组合，美国资产定价将从 <b>Higher for Longer → Pause</b>，进一步切换到 <b>Pause → Cut</b>。这才是本轮美债、美元与高久期科技资产最重要的宏观重定价路径。</div>
+</section>
+<section class="section"><h2><span class="num">10</span>核心来源</h2>
+<div class="sources">
+<a class="source" href="https://www.reuters.com/business/us-nonfarm-payrolls-fall-july-unemployment-rate-eases-41-2026-08-07/"><b>Reuters · July Employment Report</b><span>非农 -23K、参与率 61.4%、历史修正与市场反应</span></a>
+<a class="source" href="https://www.federalreserve.gov/newsevents/pressreleases/monetary20260729a.htm"><b>Federal Reserve · 2026-07-29 FOMC Statement</b><span>3.50%–3.75% · 9:3 投票 · 三名委员主张加息25bp</span></a>
+<a class="source" href="https://www.bls.gov/news.release/cpi.nr0.htm"><b>BLS · June 2026 CPI</b><span>总 CPI 3.5% · 核心 CPI 2.6%</span></a>
+<a class="source" href="https://www.reuters.com/business/citigroup-pushes-back-fed-rate-cut-timeline-amid-rising-hawkishness-2026-06-18/"><b>Reuters · Citi Fed Path</b><span>2026 Oct/Dec + 2027 Jan 三次各25bp降息路径</span></a>
+<a class="source" href="https://www.reuters.com/business/us-rate-futures-cut-chances-september-rate-hike-after-jobs-data-2026-08-07/"><b>Reuters · Fed Futures Repricing</b><span>就业报告后 9 月加息概率显著下修</span></a>
+<a class="source" href="https://www.reuters.com/world/asia-pacific/dollar-drifts-higher-traders-eye-iran-talks-ahead-us-jobs-data-2026-08-07/"><b>Reuters · Dollar & Treasury Reaction</b><span>DXY、2Y、10Y 对政策路径的即时重估</span></a>
+<a class="source" href="https://www.bls.gov/schedule/2026/08_sched_list.htm"><b>BLS · August 2026 Release Calendar</b><span>8月12日 CPI、8月28日 CES 基准修正</span></a>
+<a class="source" href="https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"><b>Federal Reserve · FOMC Calendar</b><span>9月15–16日、10月27–28日、12月8–9日会议</span></a>
+</div>
+</section>
+<p class="note">研究性质说明：本文用于宏观与公开市场研究，不构成个别证券投资建议。文中“基准/风险/尾部情景”为研究框架，不代表确定预测。所有市场价格与概率均以 2026 年 8 月 7 日美股收盘前后公开数据为研究截点，后续可能随数据发布快速变化。</p>
+</main>
+</body>
+</html>
